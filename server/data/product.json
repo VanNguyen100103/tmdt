@@ -1,0 +1,70 @@
+[
+    {
+        "title": "Basic T-Shirt",
+        "slug": "basic-t-shirt",
+        "description": "A comfortable and stylish basic t-shirt.",
+        "brand": "Brand A",
+        "price": 499000, 
+        "category": "Plain", 
+        "quantity": 100,
+        "sold": 50,
+        "images": [
+  
+        ],
+        "color": "Black",
+        "size": ["M", "L"], 
+        "ratings": [],
+        "totalRatings": 0
+    },
+    {
+        "title": "Graphic T-Shirt",
+        "slug": "graphic-t-shirt",
+        "description": "A stylish graphic t-shirt for casual wear.",
+        "brand": "Brand B",
+        "price": 599000, 
+        "category": "Palid", 
+        "quantity": 50,
+        "sold": 20,
+        "images": [
+      
+        ],
+        "color": "White",
+        "size": ["L", "XL"], 
+        "ratings": [],
+        "totalRatings": 0
+    },
+    {
+        "title": "Eco-Friendly T-Shirt",
+        "slug": "eco-friendly-t-shirt",
+        "description": "A sustainable t-shirt made from organic cotton.",
+        "brand": "Brand C",
+        "price": 699000, 
+        "category": "Images", 
+        "quantity": 75,
+        "sold": 30,
+        "images": [
+      
+        ],
+        "color": "Green",
+        "size": [ "M","L", "XL"], 
+        "ratings": [],
+        "totalRatings": 0
+    },
+    {
+        "title": "Long Sleeve T-Shirt",
+        "slug": "long-sleeve-t-shirt",
+        "description": "A sustainable t-shirt made from organic cotton.",
+        "brand": "Brand D",
+        "price": 299000, 
+        "category": "Long-Sleeve", 
+        "quantity": 35,
+        "sold": 24,
+        "images": [
+      
+        ],
+        "color": "Green",
+        "size": ["S", "M", "L"], 
+        "ratings": [],
+        "totalRatings": 0
+    }
+]

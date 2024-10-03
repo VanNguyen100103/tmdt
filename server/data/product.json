@@ -1,70 +1,62 @@
 [
     {
-        "title": "Basic T-Shirt",
-        "slug": "basic-t-shirt",
-        "description": "A comfortable and stylish basic t-shirt.",
+        "title": "Smartphone X",
+        "slug": "smartphone-x",
+        "description": "A powerful and stylish smartphone with the latest features.",
         "brand": "Brand A",
-        "price": 499000, 
-        "category": "Plain", 
+        "price": 9990000,
+        "category": "Smartphones",
         "quantity": 100,
         "sold": 50,
-        "images": [
-  
-        ],
+        "images": [],
         "color": "Black",
-        "size": ["M", "L"], 
         "ratings": [],
-        "totalRatings": 0
+        "totalRatings": 0,
+        "createdAt": "2024-09-27T01:20:30.134715"
     },
     {
-        "title": "Graphic T-Shirt",
-        "slug": "graphic-t-shirt",
-        "description": "A stylish graphic t-shirt for casual wear.",
+        "title": "Gaming Laptop Y",
+        "slug": "gaming-laptop-y",
+        "description": "A high-performance gaming laptop with powerful graphics.",
         "brand": "Brand B",
-        "price": 599000, 
-        "category": "Palid", 
+        "price": 19990000,
+        "category": "Laptops",
         "quantity": 50,
         "sold": 20,
-        "images": [
-      
-        ],
-        "color": "White",
-        "size": ["L", "XL"], 
+        "images": [],
+        "color": "Silver",
         "ratings": [],
-        "totalRatings": 0
+        "totalRatings": 0,
+        "createdAt": "2024-09-27T01:19:30.134715"
     },
     {
-        "title": "Eco-Friendly T-Shirt",
-        "slug": "eco-friendly-t-shirt",
-        "description": "A sustainable t-shirt made from organic cotton.",
+        "title": "Wireless Headphones Z",
+        "slug": "wireless-headphones-z",
+        "description": "Noise-cancelling wireless headphones with long battery life.",
         "brand": "Brand C",
-        "price": 699000, 
-        "category": "Images", 
+        "price": 2990000,
+        "category": "Headphones",
         "quantity": 75,
         "sold": 30,
-        "images": [
-      
-        ],
-        "color": "Green",
-        "size": [ "M","L", "XL"], 
+        "images": [],
+        "color": "White",
         "ratings": [],
-        "totalRatings": 0
+        "totalRatings": 0,
+        "createdAt": "2024-09-24T01:20:30.134715"
     },
     {
-        "title": "Long Sleeve T-Shirt",
-        "slug": "long-sleeve-t-shirt",
-        "description": "A sustainable t-shirt made from organic cotton.",
+        "title": "Smartwatch Z",
+        "slug": "smartwatch-z",
+        "description": "A modern smartwatch with fitness tracking and notifications.",
         "brand": "Brand D",
-        "price": 299000, 
-        "category": "Long-Sleeve", 
+        "price": 4990000,
+        "category": "Smartwatches",
         "quantity": 35,
         "sold": 24,
-        "images": [
-      
-        ],
+        "images": [],
         "color": "Green",
-        "size": ["S", "M", "L"], 
         "ratings": [],
-        "totalRatings": 0
+        "totalRatings": 0,
+        "createdAt": "2024-08-21T01:20:30.134715"
     }
 ]

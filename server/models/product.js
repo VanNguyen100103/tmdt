@@ -43,11 +43,7 @@ var productSchema = new mongoose.Schema({
     },
     color: {
         type:String,
-        enum: ["Black", "White", "Green",]
-    },
-    size: {
-        type: Array,
-        default: ["S", "M", "L", "XL", "XXL"]
+        enum: ["Black", "White", "Gold", "Silver"]
     },
     ratings: [
         {

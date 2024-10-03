@@ -1,10 +1,13 @@
 const router = require('express').Router();
+const { categoryUploader } = require('../config/cloudinary.config');
 const ctrls = require('../controllers/productCategory');
 const {verifyAccessToken, isAdmin} = require('../middlewares/verifyToken');
+
 
 router.post("/", [verifyAccessToken, isAdmin], ctrls.createCategory)
 router.get("/", ctrls.getCategories)
 router.put("/:pcid", [verifyAccessToken, isAdmin], ctrls.updateCategory)
 router.delete("/:pcid", [verifyAccessToken, isAdmin], ctrls.deleteCategory)
+router.put("/image/:pcid", [verifyAccessToken, isAdmin], categoryUploader.single('image'),ctrls.uploadImageCategory)
 
 module.exports = router;

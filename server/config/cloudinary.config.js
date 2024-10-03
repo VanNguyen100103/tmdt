@@ -23,7 +23,11 @@ const avatarStorage = new CloudinaryStorage({
     params: {
         folder: 'avatar', // specify the folder in Cloudinary for avatars
         allowedFormats: ['jpg', 'png'],
+
     },
+    limits: {
+        fileSize: 5 * 1024 * 1024 // Giới hạn kích thước file là 5MB
+    }
 });
 // Storage for avatar images
 const blogStorage = new CloudinaryStorage({
@@ -33,10 +37,19 @@ const blogStorage = new CloudinaryStorage({
         allowedFormats: ['jpg', 'png'],
     },
 });
+// Storage for avatar images
+const categoryStorage = new CloudinaryStorage({
+    cloudinary: cloudinary,
+    params: {
+        folder: 'category', // specify the folder in Cloudinary for avatars
+        allowedFormats: ['jpg', 'png'],
+    },
+});
 
 // Create uploaders
 const productUploader = multer({ storage: productStorage });
 const avatarUploader = multer({ storage: avatarStorage });
 const blogUploader = multer({ storage: blogStorage})
+const categoryUploader = multer({ storage: blogStorage})
 
-module.exports = { productUploader, avatarUploader, blogUploader };
+module.exports = { productUploader, avatarUploader, blogUploader, categoryUploader };

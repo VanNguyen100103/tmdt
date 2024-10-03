@@ -8,6 +8,14 @@ var productCategorySchema = new mongoose.Schema({
         unique:true,
         index:true,
     },
+    brand:{
+        type: Array,
+        required:true,
+    },
+    image: {
+        type:String,
+        default: "https://img.freepik.com/premium-photo/flat-lay-desk-arrangement_1257223-160146.jpg?w=996"
+    }
 },{timestamps: true});
 
 //Export the model

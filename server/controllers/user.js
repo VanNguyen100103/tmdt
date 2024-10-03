@@ -5,12 +5,12 @@ const jwt = require('jsonwebtoken');
 const sendMail = require("../utils/sendMail.js");
 const crypto = require('crypto');
 const product = require('../models/product.js');
-const { response } = require('express');
+const makeToken = require('uniquid');
 
 const register = asyncHandler(async (req, res) => {
     const { email, password, firstname, lastname, mobile } = req.body;
 
-    // Check for required inputs
+    // Kiểm tra các input bắt buộc
     if (!email || !password || !firstname || !lastname || !mobile) {
         return res.status(400).json({
             success: false,
@@ -18,35 +18,69 @@ const register = asyncHandler(async (req, res) => {
         });
     }
 
-    // Check if user already exists
+    // Kiểm tra xem user đã tồn tại chưa
     const user = await User.findOne({ email });
     if (user) throw new Error("User already exists!");
 
-    // Handle avatar upload
+    // Lưu thông tin avatar nếu có file được tải lên
     let avatar;
     if (req.file) {
+        console.log(req.file); // Log the file data for debugging
         avatar = {
-            public_id: req.file.filename, // Cloudinary public_id
-            url: req.file.path // Cloudinary URL
+            public_id: req.file.filename, // ID từ Cloudinary
+            url: req.file.path // URL từ Cloudinary
         };
     }
 
-    // Create new user
-    const newUser = await User.create({
+    // Tạo token ngẫu nhiên để gửi qua email
+    const token = makeToken();
+
+    // Lưu toàn bộ thông tin đăng ký vào cookie, bao gồm cả avatar
+   // Lưu toàn bộ thông tin đăng ký vào cookie, bao gồm cả avatar và token
+    res.cookie("dataRegister", { ...req.body, avatar, token }, {
+        httpOnly: true,
+        maxAge: 15 * 60 * 1000 // Cookie tồn tại trong 15 phút
+    });
+
+
+ 
+
+    // Gửi email xác thực
+    const html = `Xin vui lòng click vào link dưới đây để hoàn tất đăng ký.<br/>Mã sẽ hết hạn sau 15 phút.<br/><a href="${process.env.URL_SERVER}/api/user/finalregister/${token}">Click here</a>`;
+    await sendMail({ email, html, subject: "Hoàn tất đăng ký." });
+
+    return res.status(200).json({
+        success: true,
+        mes: "Please check your email to active account."
+    });
+});
+
+
+const finalRegister = asyncHandler(async (req, res) => {
+    const cookie = req.cookies;
+    const { token } = req.params;
+
+    // Kiểm tra cookie và token
+    if (!cookie || cookie?.dataRegister?.token !== token) throw new Error("Register failed");
+
+    // Lấy thông tin avatar từ cookie
+    const { email, password, firstname, lastname, mobile, avatar } = cookie.dataRegister;
+
+    // Tạo user mới
+    const user = await User.create({
         email,
         password,
         firstname,
         lastname,
         mobile,
-        avatar // Add avatar to the user object
+        avatar // Lưu thông tin avatar
     });
 
     return res.status(200).json({
-        success: true,
-        mes: newUser ? 'Registration successful. Please go to login!' : 'Something went wrong!'
+        success: user ? true : false,
+        mes: user ? "Register successfully" : "Register failed"
     });
 });
-
 
 const login = asyncHandler(async (req, res) => {
     const {email, password} = req.body;
@@ -120,9 +154,10 @@ const forgotPassword = asyncHandler(async (req, res)=>{
     const html = `Xin vui lòng click vào link dưới đây để thay đổi mật khẩu của bạn.<br/><a href="${process.env.URL_SERVER}/api/user/reset-password/${resetToken}">Click here</a>`;
     const data = {
         email,
-        html
+        html,
+        subject: "Forgot Password"
     }
-    const result = await sendMail(data.email, data.html); // Pass email and html separately.
+    const result = await sendMail(data); // Pass email and html separately.
 
   
     return res.status(200).json({success: true, res: result})
@@ -244,4 +279,4 @@ const updateCart = asyncHandler(async (req, res) => {
 
 
 
-module.exports = {register, login, getCurrent, refreshAccessToken, logout, forgotPassword, resetToken, getUsers, deleteUser, updateUser, updateUserByAdmin, updateUserAddress, updateCart}
+module.exports = {register, finalRegister,login, getCurrent, refreshAccessToken, logout, forgotPassword, resetToken, getUsers, deleteUser, updateUser, updateUserByAdmin, updateUserAddress, updateCart}

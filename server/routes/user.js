@@ -3,7 +3,8 @@ const ctrls = require('../controllers/user');
 const {verifyAccessToken, isAdmin} = require('../middlewares/verifyToken');
 const {avatarUploader} = require('../config/cloudinary.config');
 
-router.post("/register", avatarUploader.single('avatar'), ctrls.register);
+router.post("/register", avatarUploader.single('avatar'), ctrls.register); // Avatar chỉ cần tải lên trong bước đăng ký
+router.get("/finalregister/:token", ctrls.finalRegister); // Không cần tải lại avatar ở bước này
 router.post("/login", ctrls.login)
 router.get('/current', verifyAccessToken, ctrls.getCurrent)
 router.post("/refreshtoken", ctrls.refreshAccessToken)
